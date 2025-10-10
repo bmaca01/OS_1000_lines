@@ -33,6 +33,10 @@ void kernel_main(void) {
         putchar(s[i]);
     }
      */
+    memset(__bss, 0, (size_t) __bss_end - (size_t) __bss);
+
+    PANIC("booted!");
+
     printf("\n\nWOAH! %s\n", "FUCK BITCH");
     printf("1 + 2 = %d, %x\n", 1 + 2, 0x1234abcd);
 
