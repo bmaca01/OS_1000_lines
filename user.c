@@ -2,11 +2,6 @@
 
 extern char __stack_top[];
 
-__attribute__((noreturn)) 
-void exit(void) {
-    for (;;);
-}
-
 int syscall(int sysno, int arg0, int arg1, int arg2) {
     /**
      * set syscall in a3, args in a0, a1, and a2, then exec ecall.
@@ -23,6 +18,12 @@ int syscall(int sysno, int arg0, int arg1, int arg2) {
         : "memory"
     );
     return a0;
+}
+
+__attribute__((noreturn)) 
+void exit(void) {
+    syscall(SYS_EXIT, 0, 0, 0);
+    for (;;);
 }
 
 void putchar(char ch) {

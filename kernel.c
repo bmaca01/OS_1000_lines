@@ -312,6 +312,18 @@ void handle_syscall(struct trap_frame *f) {
                 yield();
             }
             break;
+        case SYS_EXIT:
+            printf("process %d exited\n", current_proc->pid);
+            current_proc->state = PROC_EXITED;
+
+            /** Note:
+             * Building a 'practical' OS requires freeing
+             * resources held by the exited process like 
+             * page tables and allocated memory
+             */
+
+            yield();
+            PANIC("unreachable");
         default:
             PANIC("unexpected syscall a3=%x\n", f->a3);
     }
