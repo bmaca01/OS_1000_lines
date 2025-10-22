@@ -18,12 +18,19 @@ void *memset(void *buf, char c, size_t n) {
 }
 
 char *strcpy(char *dst, const char *src) {
-    /* This is unsafe !!!!!! */
+    /* WARNING: This is unsafe - no bounds checking! */
     char *d = dst;
     while (*src)
         *d++ = *src++;
     *d = '\0';
     return dst;
+}
+
+size_t strlen(const char *s) {
+    size_t len = 0;
+    while (*s++)
+        len++;
+    return len;
 }
 
 int strcmp(const char *s1, const char *s2) {

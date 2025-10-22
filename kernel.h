@@ -1,8 +1,9 @@
 #pragma once
 #include "common.h"
 
-#define PAGE_SIZE 4096
-#define PROCS_MAX 8
+#define PAGE_SIZE       4096
+#define PROCS_MAX       8
+#define PROC_STACK_SIZE 8192
 
 #define PROC_UNUSED     0
 #define PROC_RUNNABLE   1
@@ -32,7 +33,7 @@ struct process {
     int state;
     vaddr_t sp;
     uint32_t *page_table;
-    uint8_t stack[8192];
+    uint8_t stack[PROC_STACK_SIZE];
 };
 
 struct sbiret {
